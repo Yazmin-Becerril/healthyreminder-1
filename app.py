@@ -57,6 +57,21 @@ def investigacion():
 
     return render_template("investigacion.html", content=html_content)
 
+@app.route("/justificacion")
+def justificacion():
+    md_path = REPORTS_DIR / "justificacion_proyecto.md"
+
+    if not md_path.exists():
+        html_content = "<p>No se encontró el archivo de justificación.</p>"
+    else:
+        content = md_path.read_text(encoding="utf-8")
+        html_content = markdown.markdown(
+            content,
+            extensions=["fenced_code", "tables"]
+        )
+
+    return render_template("investigacion.html", content=html_content)
+
 
 @app.route("/resultados")
 def resultados():
