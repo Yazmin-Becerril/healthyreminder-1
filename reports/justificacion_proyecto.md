@@ -1,22 +1,22 @@
-# 📌 Justificación del Proyecto — Healthy Reminder ML
+# Justificación del Proyecto — Healthy Reminder ML
 
-## 🎯 Objetivo del proyecto
+## Objetivo del proyecto
 
 El presente proyecto tiene como objetivo predecir la inasistencia de pacientes a citas médicas utilizando técnicas de Machine Learning, con la finalidad de mejorar la gestión de citas y permitir la implementación de recordatorios inteligentes en el sistema **Healthy Reminder**.
 
 ---
 
-## ✅ Cumplimiento de los requerimientos
+## Cumplimiento de los requerimientos
 
 A continuación se justifica cómo el proyecto cumple con cada uno de los puntos solicitados para la evaluación y posible exención.
 
 ---
 
-## 🧪 1. Mejora de la experimentación
+## 1. Mejora de la experimentación
 
 El proyecto no se limitó a un análisis básico, sino que evolucionó significativamente a través de distintas fases:
 
-### ✔ Mejora del dataset
+### Mejora del dataset
 - Se partió de un dataset real (No-show appointments).
 - Se realizó una auditoría completa (EDA).
 - Se identificaron problemas como:
@@ -24,7 +24,7 @@ El proyecto no se limitó a un análisis básico, sino que evolucionó significa
   - desbalance en la variable objetivo
 - Se generaron nuevas variables (feature engineering), lo cual enriqueció el dataset.
 
-### ✔ Ingeniería de características
+### Ingeniería de características
 Se agregaron variables clave como:
 - `waiting_days`
 - `age_group`
@@ -34,7 +34,7 @@ Se agregaron variables clave como:
 
 Esto permitió mejorar la capacidad predictiva del modelo.
 
-### ✔ Uso de múltiples modelos
+### Uso de múltiples modelos
 Se entrenaron y compararon distintos algoritmos:
 - Logistic Regression
 - Decision Tree
@@ -44,7 +44,7 @@ Se entrenaron y compararon distintos algoritmos:
 
 No se eligió un modelo arbitrariamente, sino mediante comparación con métricas.
 
-### ✔ Evaluación con métricas correctas
+### Evaluación con métricas correctas
 Se utilizaron:
 - accuracy
 - precision
@@ -57,7 +57,7 @@ Se identificó que **accuracy no era suficiente** debido al desbalance del datas
 
 ---
 
-## ⚖️ 2. Manejo del desbalance
+## 2. Manejo del desbalance
 
 Uno de los problemas principales del dataset era el desbalance:
 
@@ -70,25 +70,25 @@ Para resolver esto se implementaron:
 - SMOTE (Synthetic Minority Oversampling Technique)
 - división con `stratify`
 
-### ✔ Resultado clave
+### Resultado clave
 
 Se logró mejorar significativamente el **recall de la clase No-show (~0.84)**, lo cual es crítico en el problema, ya que el objetivo es detectar pacientes con riesgo de faltar.
 
 ---
 
-## 💾 3. Preparación para producción
+## 3. Preparación para producción
 
 El proyecto no se quedó en experimentación, sino que avanzó hacia un enfoque más cercano a producción:
 
-### ✔ Modelo persistente
+### Modelo persistente
 - Se guardó el modelo usando `joblib`
 - Se guardaron las columnas de entrada
 
-### ✔ Script de inferencia
+### Script de inferencia
 - Se desarrolló `predict.py`
 - Permite hacer predicciones con nuevos datos
 
-### ✔ Aplicación web (Flask)
+### Aplicación web (Flask)
 Se creó una interfaz que permite:
 - ingresar datos
 - usar casos de prueba
@@ -99,7 +99,7 @@ Esto demuestra un uso real del modelo.
 
 ---
 
-## 🧠 4. Uso de SQL (Propuesto)
+## 4. Uso de SQL (Propuesto)
 
 Aunque el entrenamiento se realizó con archivos CSV, se implementó y demostró la capacidad de:
 
@@ -111,7 +111,7 @@ Esto cumple con el requerimiento de uso de bases de datos en escenarios reales.
 
 ---
 
-## 🔄 5. Pipeline de Machine Learning
+## 5. Pipeline de Machine Learning
 
 Se implementó un flujo reproducible de trabajo:
 
@@ -127,7 +127,7 @@ Este flujo constituye un **pipeline de ML**, ya que permite repetir el proceso d
 
 ---
 
-## ⚙️ 6. MLOps (Preparación)
+## 6. MLOps (Preparación)
 
 Se investigaron e integraron conceptos clave de MLOps:
 
@@ -140,7 +140,7 @@ Aunque no se implementó un pipeline automatizado completo, el proyecto **está 
 
 ---
 
-## 🚀 7. Plan de producción
+## 7. Plan de producción
 
 Se definió un plan claro para llevar el modelo a producción:
 
@@ -152,7 +152,7 @@ Se definió un plan claro para llevar el modelo a producción:
 
 ---
 
-## 🌐 8. Aplicación funcional
+## 8. Aplicación funcional
 
 El sistema desarrollado permite:
 
@@ -160,15 +160,15 @@ El sistema desarrollado permite:
 - uso de datos simplificados para usuario
 - generación automática de variables
 - interpretación del riesgo mediante colores:
-  - 🟢 bajo
-  - 🟡 medio
-  - 🔴 alto
+  - Bajo
+  - Medio
+  - Alto
 
 Esto acerca el proyecto a un uso real en sistemas de salud.
 
 ---
 
-## 🎯 Conclusión
+## Conclusión
 
 El proyecto cumple completamente con los requisitos solicitados, ya que:
 
@@ -185,7 +185,7 @@ Además, el sistema desarrollado demuestra un enfoque profesional que va más al
 
 ---
 
-## 📌 Nota final
+## 27Nota final
 
 El valor principal del proyecto no radica únicamente en el modelo, sino en todo el proceso completo:
 
