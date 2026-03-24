@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="grid">
+  <div class="card">
+    <h3>Accuracy</h3>
+    <p class="metric">{{ metrics.accuracy }}</p>
+  </div>
+  <div class="card">
+    <h3>Precision</h3>
+    <p class="metric">{{ metrics.precision }}</p>
+  </div>
+  <div class="card">
+    <h3>Recall</h3>
+    <p class="metric">{{ metrics.recall }}</p>
+  </div>
+  <div class="card">
+    <h3>F1</h3>
+    <p class="metric">{{ metrics.f1 }}</p>
+  </div>
+  <div class="card">
+    <h3>ROC-AUC</h3>
+    <p class="metric">{{ metrics.roc_auc }}</p>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Fase 5 — Comparación inicial</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>Accuracy</th>
+          <th>Precision</th>
+          <th>Recall</th>
+          <th>F1</th>
+          <th>ROC-AUC</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in fase5 %}
+        <tr>
+          <td>{{ row.model }}</td>
+          <td>{{ row.accuracy }}</td>
+          <td>{{ row.precision }}</td>
+          <td>{{ row.recall }}</td>
+          <td>{{ row.f1 }}</td>
+          <td>{{ row.roc_auc }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="card">
+  <h2>Fase 6 — Manejo del desbalance</h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Modelo</th>
+          <th>Accuracy</th>
+          <th>Precision</th>
+          <th>Recall</th>
+          <th>F1</th>
+          <th>ROC-AUC</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in fase6 %}
+        <tr>
+          <td>{{ row.model }}</td>
+          <td>{{ row.accuracy }}</td>
+          <td>{{ row.precision }}</td>
+          <td>{{ row.recall }}</td>
+          <td>{{ row.f1 }}</td>
+          <td>{{ row.roc_auc }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Conclusión</h3>
+  <p>
+    El mejor resultado para el objetivo real del problema fue obtenido con Logistic Regression
+    balanceada, ya que logró un recall alto para la clase minoritaria, que en este caso es la
+    más importante.
+  </p>
+</section>
+{% endblock %}

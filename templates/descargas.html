@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="card">
+  <h2>Descargas</h2>
+  <ul class="download-list">
+    <li><a href="{{ url_for('download_file', name='investigacion') }}">Investigación (.md)</a></li>
+    <li><a href="{{ url_for('download_file', name='modelo') }}">Modelo final (.joblib)</a></li>
+    <li><a href="{{ url_for('download_file', name='columnas') }}">Columnas de entrada (.joblib)</a></li>
+    <li><a href="{{ url_for('download_file', name='eda') }}">Notebook Fase 2 (.ipynb)</a></li>
+    <li><a href="{{ url_for('download_file', name='preprocesamiento') }}">Notebook Fase 3 (.ipynb)</a></li>
+    <li><a href="{{ url_for('download_file', name='features') }}">Notebook Fase 4 (.ipynb)</a></li>
+    <li><a href="{{ url_for('download_file', name='modelos') }}">Notebook Fase 5 (.ipynb)</a></li>
+    <li><a href="{{ url_for('download_file', name='balanceo') }}">Notebook Fase 6 (.ipynb)</a></li>
+    <li><a href="{{ url_for('download_file', name='modelo_final') }}">Notebook Fase 8 (.ipynb)</a></li>
+  </ul>
+</section>
+{% endblock %}

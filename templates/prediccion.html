@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="card">
+  <h2>Probar predicción</h2>
+  <p>
+    Puedes usar un caso de ejemplo o llenar manualmente los datos principales.
+    Las variables derivadas se calculan automáticamente.
+  </p>
+
+  {% if error %}
+    <div class="alert error">{{ error }}</div>
+  {% endif %}
+
+  {% if result %}
+    <div class="alert {{ result.risk_color }}">
+      <p><strong>Predicción:</strong> {{ result.prediction }} (0 = asiste, 1 = no asiste)</p>
+      <p><strong>Probabilidad de no asistencia:</strong> {{ result.probability_no_show }}</p>
+      <p><strong>Nivel de riesgo:</strong> {{ result.risk_label }}</p>
+      <hr>
+      <p><strong>Variables calculadas automáticamente:</strong></p>
+      <p>Grupo de edad: {{ result.age_group }}</p>
+      <p>Tiene comorbilidad: {{ result.has_comorbidity }}</p>
+      <p>Puntaje de riesgo: {{ result.risk_score }}</p>
+      <p>Niño o adulto mayor: {{ result.is_child_or_senior }}</p>
+      <p>Cita el mismo día: {{ result.is_same_day }}</p>
+    </div>
+  {% endif %}
+
+  <div class="card" style="margin-bottom: 20px;">
+    <label for="caso_ejemplo"><strong>Casos de ejemplo</strong></label>
+    <select id="caso_ejemplo">
+      <option value="">Selecciona un caso...</option>
+      <option value="riesgo_bajo">Caso de riesgo bajo</option>
+      <option value="riesgo_medio">Caso de riesgo medio</option>
+      <option value="riesgo_alto">Caso de riesgo alto</option>
+    </select>
+  </div>
+
+  <form method="POST" class="form-grid" id="form-prediccion">
+    <label>Sexo
+      <select name="Gender" id="Gender" required>
+        <option value="0">Mujer</option>
+        <option value="1">Hombre</option>
+      </select>
+    </label>
+
+    <label>Edad
+      <input type="number" name="Age" id="Age" value="45" min="0" max="115" required>
+    </label>
+
+    <label>Colonia
+      <select name="Neighbourhood" id="Neighbourhood" required>
+        {% for n in neighbourhoods %}
+          <option value="{{ n }}" {% if n == "JARDIM DA PENHA" %}selected{% endif %}>
+            {{ n }}
+          </option>
+        {% endfor %}
+      </select>
+    </label>
+
+    <label>¿Tiene beca?
+      <select name="Scholarship" id="Scholarship" required>
+        <option value="0">No</option>
+        <option value="1">Sí</option>
+      </select>
+    </label>
+
+    <label>¿Tiene hipertensión?
+      <select name="Hipertension" id="Hipertension" required>
+        <option value="0">No</option>
+        <option value="1" selected>Sí</option>
+      </select>
+    </label>
+
+    <label>¿Tiene diabetes?
+      <select name="Diabetes" id="Diabetes" required>
+        <option value="0" selected>No</option>
+        <option value="1">Sí</option>
+      </select>
+    </label>
+
+    <label>¿Tiene alcoholismo?
+      <select name="Alcoholism" id="Alcoholism" required>
+        <option value="0" selected>No</option>
+        <option value="1">Sí</option>
+      </select>
+    </label>
+
+    <label>Discapacidad
+      <select name="Handcap" id="Handcap" required>
+        <option value="0" selected>No</option>
+        <option value="1">Nivel 1</option>
+        <option value="2">Nivel 2</option>
+        <option value="3">Nivel 3</option>
+        <option value="4">Nivel 4</option>
+      </select>
+    </label>
+
+    <label>¿Recibió SMS?
+      <select name="SMS_received" id="SMS_received" required>
+        <option value="0">No</option>
+        <option value="1" selected>Sí</option>
+      </select>
+    </label>
+
+    <label>Días de espera
+      <input type="number" name="waiting_days" id="waiting_days" value="12" min="-10" max="180" required>
+    </label>
+
+    <label>Día de la semana en que se agendó
+      <select name="scheduled_weekday" id="scheduled_weekday" required>
+        <option value="0">Lunes</option>
+        <option value="1" selected>Martes</option>
+        <option value="2">Miércoles</option>
+        <option value="3">Jueves</option>
+        <option value="4">Viernes</option>
+        <option value="5">Sábado</option>
+      </select>
+    </label>
+
+    <label>Día de la semana de la cita
+      <select name="appointment_weekday" id="appointment_weekday" required>
+        <option value="0">Lunes</option>
+        <option value="1">Martes</option>
+        <option value="2">Miércoles</option>
+        <option value="3" selected>Jueves</option>
+        <option value="4">Viernes</option>
+        <option value="5">Sábado</option>
+      </select>
+    </label>
+
+    <label>Mes de la cita
+      <select name="appointment_month" id="appointment_month" required>
+        <option value="4">Abril</option>
+        <option value="5" selected>Mayo</option>
+        <option value="6">Junio</option>
+      </select>
+    </label>
+
+    <label>Hora en que se agendó
+      <input type="number" name="schedule_hour" id="schedule_hour" value="10" min="0" max="23" required>
+    </label>
+
+    <button type="submit">Predecir</button>
+  </form>
+</section>
+
+<script id="casos-data" type="application/json">
+  {{ casos_ejemplo | tojson | safe }}
+</script>
+
+<script>
+  const casosEjemplo = JSON.parse(
+    document.getElementById("casos-data").textContent
+  );
+
+  document.getElementById("caso_ejemplo").addEventListener("change", function () {
+    const caso = this.value;
+    if (!caso || !casosEjemplo[caso]) return;
+
+    const data = casosEjemplo[caso];
+
+    Object.keys(data).forEach((key) => {
+      const field = document.getElementById(key);
+      if (field) {
+        field.value = data[key];
+      }
+    });
+  });
+</script>
+{% endblock %}

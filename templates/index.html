@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+  <h2>Predicción de asistencia a citas médicas</h2>
+  <p>
+    Proyecto de Machine Learning orientado al sistema Healthy Reminder para identificar
+    pacientes con riesgo de no asistir a su cita médica.
+  </p>
+</section>
+
+<section class="grid">
+  <div class="card">
+    <h3>Objetivo</h3>
+    <p>
+      Detectar pacientes con mayor probabilidad de inasistencia para activar recordatorios
+      y mejorar la gestión del sistema.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Mejor modelo</h3>
+    <p>
+      Logistic Regression con <code>class_weight='balanced'</code>, priorizando recall
+      sobre accuracy.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Recall final</h3>
+    <p class="metric">0.8441</p>
+  </div>
+
+  <div class="card">
+    <h3>Enfoque</h3>
+    <p>
+      SQL + Pipeline + Feature Engineering + Manejo de desbalance + modelo guardado.
+    </p>
+  </div>
+</section>
+
+<section class="card">
+  <h3>Resumen</h3>
+  <p>
+    El proyecto evolucionó desde un experimento académico básico hasta un flujo más cercano
+    a producción, integrando almacenamiento en SQL, pipeline reproducible, comparación de
+    modelos, manejo de desbalance y base de inferencia real.
+  </p>
+</section>
+{% endblock %}

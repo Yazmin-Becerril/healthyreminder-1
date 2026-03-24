@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Healthy Reminder ML</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <h1>Healthy Reminder ML</h1>
+      <nav>
+        <a href="{{ url_for('index') }}">Inicio</a>
+        <a href="{{ url_for('investigacion') }}">Investigación</a>
+        <a href="{{ url_for('resultados') }}">Resultados</a>
+        <a href="{{ url_for('prediccion') }}">Predicción</a>
+        <a href="{{ url_for('descargas') }}">Descargas</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
